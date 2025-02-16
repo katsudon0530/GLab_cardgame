@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f359ba17d92a642aa2d30fdfb5f2af, type: 3}
+  m_Name: Magic
+  m_EditorClassIdentifier: 
+  Name: "\u9B54\u6CD5"
+  synthesisType: 0
+  type: 1
+  number: 1
+  icon: {fileID: 21300000, guid: ae397095eac9fc443a64911c33a86f8f, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  description: "\u9B54\u6CD5\u653B\u6483"
+  cardEffect:
+    attack_Effect: 0.9
+    magic_Effect: 0.7
+    protection_Effect: 0.75
+    heal_Effect: 1.25

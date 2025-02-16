@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f359ba17d92a642aa2d30fdfb5f2af, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  Name: "\u76FE"
+  synthesisType: 0
+  type: 2
+  number: 2
+  icon: {fileID: 21300000, guid: a1ec7506a36e84e4cbb15286fd3226f2, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  description: "\u9632\u5FA1"
+  cardEffect:
+    attack_Effect: 1.5
+    magic_Effect: 1.5
+    protection_Effect: 2
+    heal_Effect: 1.5
