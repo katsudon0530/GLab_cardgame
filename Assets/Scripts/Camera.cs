@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class CameraAAA : MonoBehaviour
 {
     [SerializeField] Camera cameraWH;
 
-    public float targetAspectRatio = 16f / 9f; // ŒÅ’è‚·‚éƒAƒXƒyƒNƒg”äi—á: 16:9j
+    public float targetAspectRatio = 16f / 9f; // å›ºå®šã™ã‚‹ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ï¼ˆä¾‹: 16:9ï¼‰
 
     void Update()
     {
@@ -15,13 +15,13 @@ public class CameraAAA : MonoBehaviour
 
     void SetFixedAspectRatio()
     {
-        // Œ»İ‚Ì‰æ–ÊƒAƒXƒyƒNƒg”ä
+        // ç¾åœ¨ã®ç”»é¢ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
         float windowAspect = (float)Screen.width / Screen.height;
 
-        // ƒ^[ƒQƒbƒg‚ÌƒAƒXƒyƒNƒg”ä‚ÉŠî‚Ã‚­ƒXƒP[ƒ‹
+        // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã«åŸºã¥ãã‚¹ã‚±ãƒ¼ãƒ«
         float scaleHeight = windowAspect / targetAspectRatio;
 
-        // ƒJƒƒ‰‚ÌViewport‚ğ•ÏX
+        // ã‚«ãƒ¡ãƒ©ã®Viewportã‚’å¤‰æ›´
         if (scaleHeight < 1.0f)
         {
             Rect rect = cameraWH.rect;

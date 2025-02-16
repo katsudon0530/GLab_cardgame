@@ -1,29 +1,29 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class EnemyBase : ScriptableObject
 {
-    [Header("ƒGƒlƒ~[‚Ìí—Ş")]
+    [Header("ã‚¨ãƒãƒŸãƒ¼ã®ç¨®é¡")]
     [SerializeField] Sprite icon;
     [SerializeField] string Name;
     [SerializeField] EnemyType type;
     [Space(10)]
-    [Header("ƒGƒlƒ~[ƒXƒe[ƒ^ƒX")]
+    [Header("ã‚¨ãƒãƒŸãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹")]
     [SerializeField] int enemyLifeMax;
     int enemyLife;
     [SerializeField] int enemyAttack;
     [SerializeField] int enemyDefense;
     [SerializeField] int enemyMagicDefense;
     [Space(10)]
-    [Header("‹­UŒ‚")]
+    [Header("å¼·æ”»æ’ƒ")]
     [SerializeField] int enemyCount;
     int Count;
     [TextArea]
     [SerializeField] string description;
 
-    [SerializeField, Header("Šm—¦"), Range(0, 100)]
+    [SerializeField, Header("ç¢ºç‡"), Range(0, 100)]
     private int[] Weights = new int[3];
 
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class CardGenerator : MonoBehaviour
 
     public CardBase[] CardBases { get => cardBases; set => cardBases = value; }
 
-    //ƒiƒ“ƒo[‚©‚çƒJ[ƒh‚ğ¶¬‚·‚é
+    //ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚«ãƒ¼ãƒ‰ã‚’ç”Ÿæˆã™ã‚‹
     public Card Spawn(int number)
     {
         Card card = Instantiate(cardPrefab);
@@ -18,7 +18,7 @@ public class CardGenerator : MonoBehaviour
         return card;
     }
 
-    //ƒJ[ƒh‚Ìî•ñ‚ğXV‚·‚é
+    //ã‚«ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
     public Card ChangeCard(Card card, int number)
     {
         card.Set(CardBases[number]);

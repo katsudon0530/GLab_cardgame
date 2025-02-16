@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
     public Vector3 originalSize;
     public Vector3 originalPosition;
 
-    //ƒJ[ƒh“à—e‚Ì’è‹`
+    //ã‚«ãƒ¼ãƒ‰å†…å®¹ã®å®šç¾©
     public void Set(CardBase cardBase)
     {
         Base = cardBase;
@@ -41,17 +41,17 @@ public class Card : MonoBehaviour
 
     }
 
-    //ƒJ[ƒhƒNƒŠƒbƒN‚ÌƒŠƒAƒNƒVƒ‡ƒ“æ‚ÌQÆ
+    //ã‚«ãƒ¼ãƒ‰ã‚¯ãƒªãƒƒã‚¯æ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å…ˆã®å‚ç…§
     public void OnClick()
     {
         OnClickCard?.Invoke(this);
     }
-    //ƒJ[ƒh‚É‚ğƒNƒŠƒbƒN‚µ‚½Œã‚ÌˆÊ’u•â³
+    //ã‚«ãƒ¼ãƒ‰ã«ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸå¾Œã®ä½ç½®è£œæ­£
     public void PosReset()
     {
         transform.position += Vector3.up * 0.2f;
     }
-    //ƒJ[ƒh‚Éƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ª“ü‚Á‚½‚Ì”½‰
+    //ã‚«ãƒ¼ãƒ‰ã«ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒå…¥ã£ãŸæ™‚ã®åå¿œ
     public void PointerEnter()
     {
         originalSize = transform.localScale;
@@ -61,7 +61,7 @@ public class Card : MonoBehaviour
         GetComponentInChildren<Canvas>().sortingLayerName = "overLay";
     }
 
-    //ƒJ[ƒh‚©‚çƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ªo‚½‚ÌƒŠƒAƒNƒVƒ‡ƒ“
+    //ã‚«ãƒ¼ãƒ‰ã‹ã‚‰ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒå‡ºãŸæ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public void PointerExit()
     {
         transform.position -= Vector3.up * 0.2f;
@@ -69,7 +69,7 @@ public class Card : MonoBehaviour
         GetComponentInChildren<Canvas>().sortingLayerName = "Default";
     }
 
-    //ƒJ[ƒh‚ÌƒnƒCƒhƒpƒlƒ‹‚ğ”ñ•\¦‚É‚·‚é
+    //ã‚«ãƒ¼ãƒ‰ã®ãƒã‚¤ãƒ‰ãƒ‘ãƒãƒ«ã‚’éè¡¨ç¤ºã«ã™ã‚‹
     public void Open()
     {
         SynthesisPanel.SetActive(false);

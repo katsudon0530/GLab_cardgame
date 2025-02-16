@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,27 +10,27 @@ public class BattlerHand : MonoBehaviour
     public List<Card> List { get => list; set => list = value; }
 
 
-    //ƒJ[ƒh‚ðƒŠƒXƒg‚É’Ç‰Á
+    //ã‚«ãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
     public void Add(Card card)
     {
         list.Add(card);
         card.transform.SetParent(this.transform);
     }
 
-    //ƒJ[ƒh‚ðƒŠƒXƒg‚©‚çíœ
+    //ã‚«ãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
     public void RemoveList(Card card)
     {
         list.Remove(card);
     }
 
-    //ƒJ[ƒh‚ÌƒfƒBƒŒƒNƒgƒŠ‚ð•ÏXEƒJ[ƒhƒŠƒZƒbƒg‚ÌŒÄ‚Ño‚µ
+    //ã‚«ãƒ¼ãƒ‰ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å¤‰æ›´ãƒ»ã‚«ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆã®å‘¼ã³å‡ºã—
     public void RePosition(Card card)
     {
         card.transform.SetParent(this.transform);
         ResetPosition();
     }
 
-    //ƒŠƒXƒg‚Ì”ÍˆÍ‚ð‚Æ‚Á‚ÄƒJ[ƒh‚«‚ê‚¢‚É•À‚×‚é
+    //ãƒªã‚¹ãƒˆã®ç¯„å›²ã‚’ã¨ã£ã¦ã‚«ãƒ¼ãƒ‰ãã‚Œã„ã«ä¸¦ã¹ã‚‹
     public void ResetPosition()
     {
         list.Sort((card0,card1) => card0.Base.Number - card1.Base.Number);

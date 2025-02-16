@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     
 
-    //ƒJ[ƒh“à—e‚Ì’è‹`
+    //ã‚«ãƒ¼ãƒ‰å†…å®¹ã®å®šç¾©
     public void SetEnemy(EnemyBase enemyBase)
     {
         enemyBase.EnemyLife = enemyBase.EnemyLifeMax;

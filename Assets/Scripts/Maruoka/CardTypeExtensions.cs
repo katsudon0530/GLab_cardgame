@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +16,7 @@ public static class CardTypeExtensions
                     float defense = 1f - enemy.Base.EnemyDefense / 100f;
                     int damage = (int)(Hit * defense);
                     enemy.Base.EnemyLife -= damage;
-                    kekka.text = $"{damage}É_ÉÅÅ[ÉWó^Ç¶ÇΩ";
+                    kekka.text = $"{damage}„ÉÄ„É°„Éº„Ç∏‰∏é„Åà„Åü";
                     if (enemy.Base.EnemyLife < 0)
                     {
                         enemy.Base.EnemyLife = 0;
@@ -29,7 +29,7 @@ public static class CardTypeExtensions
                     float defense = 1f - enemy.Base.EnemyMagicDefense / 100f;
                     int damage = (int)(Hit * defense);
                     enemy.Base.EnemyLife -= damage;
-                    kekka.text = $"{damage}ñÇñ@É_ÉÅÅ[ÉWÇ†ÇΩÇ¶ÇΩ";
+                    kekka.text = $"{damage}È≠îÊ≥ï„ÉÄ„É°„Éº„Ç∏„ÅÇ„Åü„Åà„Åü";
                     if (enemy.Base.EnemyLife < 0)
                     {
                         enemy.Base.EnemyLife = 0;
@@ -39,7 +39,7 @@ public static class CardTypeExtensions
             case CardType.Protection:
                 {
                     player.Defens += player.Guard;
-                    kekka.text = $"{player.Defens}Ç⁄Ç§Ç¨ÇÂÇ™Ç†Ç™Ç¡ÇΩ";
+                    kekka.text = $"{player.Defens}„Åº„ÅÜ„Åé„Çá„Åå„ÅÇ„Åå„Å£„Åü";
                 }
                 break;
             case CardType.Heal:
@@ -50,7 +50,7 @@ public static class CardTypeExtensions
                         player.Heal = player.LifeMax - player.Life;
                     }
                     player.Life += player.Heal;
-                    kekka.text = $"{player.Heal}HPÇ©Ç¢Ç”Ç≠ÇµÇΩ";
+                    kekka.text = $"{player.Heal}HP„Åã„ÅÑ„Åµ„Åè„Åó„Åü";
                 }
                 break;
             case CardType.Reset:

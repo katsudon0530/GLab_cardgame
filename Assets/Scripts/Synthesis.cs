@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class Synthesis : MonoBehaviour
     public int cardNumber = 0;
 
 
-    //ƒJ[ƒh‚ğ‡¬‚·‚é
+    //ã‚«ãƒ¼ãƒ‰ã‚’åˆæˆã™ã‚‹
     public void CardSynthesis(List<Card> card, List<int> Deck)
     {
         switch (card[0].Base.Type)
@@ -33,20 +33,20 @@ public class Synthesis : MonoBehaviour
                 cardNumber = 7;
                 break;
         }
-        //‡¬‚µ‚½ƒJ[ƒh‚ğèD‚É¶¬
+        //åˆæˆã—ãŸã‚«ãƒ¼ãƒ‰ã‚’æ‰‹æœ­ã«ç”Ÿæˆ
         Deck.Add(cardNumber);
         SynthesisCard = generator.Spawn(cardNumber);
         battler.SerCardToHand(SynthesisCard);
         battler.Hand.ResetPosition();
 
-        //ƒfƒbƒL‚©‚ç‡¬‚µ‚½ƒJ[ƒh‚ğíœ
+        //ãƒ‡ãƒƒã‚­ã‹ã‚‰åˆæˆã—ãŸã‚«ãƒ¼ãƒ‰ã‚’å‰Šé™¤
         for (int i = 0; i < card.Count; i++)
         {
             int index = Deck.FindIndex(number => number == card[i].Base.Number);
             Deck.RemoveAt(index);
         }
 
-        //‡¬‚µ‚½ê‚ÌƒJ[ƒh‚ğ‰ó‚·
+        //åˆæˆã—ãŸå ´ã®ã‚«ãƒ¼ãƒ‰ã‚’å£Šã™
         for (int i = 1; card.Count > 1;)
         {
             Destroy(card[i].gameObject);
@@ -56,7 +56,7 @@ public class Synthesis : MonoBehaviour
     }
 
 
-    //ƒJ[ƒh‚ğˆÚ“®‚³‚¹‚Ä‰ñ“]
+    //ã‚«ãƒ¼ãƒ‰ã‚’ç§»å‹•ã•ã›ã¦å›è»¢
     public IEnumerator Close(Card card)
     {
         float rotationAngle = 180.0f;
@@ -66,10 +66,10 @@ public class Synthesis : MonoBehaviour
         Quaternion startRotation = card.transform.rotation;
         Quaternion endRotation = Quaternion.Euler(0, rotationAngle, 0);
 
-        //ˆê‰ñ“]–Ú
+        //ä¸€å›è»¢ç›®
         while (elapsedTime < duration)
         {
-            // Œo‰ßŠÔ‚ÉŠî‚Ã‚¢‚Ä‰ñ“]‚ğüŒ`•âŠÔ
+            // çµŒéæ™‚é–“ã«åŸºã¥ã„ã¦å›è»¢ã‚’ç·šå½¢è£œé–“
             card.transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
 
@@ -80,19 +80,19 @@ public class Synthesis : MonoBehaviour
             yield return null; 
         }
 
-        // ÅŒã‚É–Ú•W‚Ì‰ñ“]‚É‚Ò‚Á‚½‚è‡‚í‚¹‚é
+        // æœ€å¾Œã«ç›®æ¨™ã®å›è»¢ã«ã´ã£ãŸã‚Šåˆã‚ã›ã‚‹
         card.transform.rotation = endRotation;
-        kekka.text = "ƒJ[ƒh‚ğ‡¬‚µ‚½";
+        kekka.text = "ã‚«ãƒ¼ãƒ‰ã‚’åˆæˆã—ãŸ";
         yield return new WaitForSeconds(0.8f);
 
         rotationAngle = 0.0f;
         elapsedTime = 0.0f;
         startRotation = card.transform.rotation;
         endRotation = Quaternion.Euler(0, rotationAngle, 0);
-        //2‰ñ“]–Ú
+        //2å›è»¢ç›®
         while (elapsedTime < duration)
         {
-            // Œo‰ßŠÔ‚ÉŠî‚Ã‚¢‚Ä‰ñ“]‚ğüŒ`•âŠÔ
+            // çµŒéæ™‚é–“ã«åŸºã¥ã„ã¦å›è»¢ã‚’ç·šå½¢è£œé–“
             card.transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
 
@@ -101,21 +101,21 @@ public class Synthesis : MonoBehaviour
                 card.Open();
                 generator.ChangeCard(card,cardNumber);
             }
-            yield return null;  // Ÿ‚ÌƒtƒŒ[ƒ€‚Ü‚Å‘Ò‹@
+            yield return null;  // æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§å¾…æ©Ÿ
         }
 
-        // ÅŒã‚É–Ú•W‚Ì‰ñ“]‚É‚Ò‚Á‚½‚è‡‚í‚¹‚é
+        // æœ€å¾Œã«ç›®æ¨™ã®å›è»¢ã«ã´ã£ãŸã‚Šåˆã‚ã›ã‚‹
         card.transform.rotation = endRotation;
     }
 
 
-    //— –Ê‚ğ•\¦
+    //è£é¢ã‚’è¡¨ç¤º
     public void OnSynthesisPanel()
     {
         SynthesisButtonPanel.SetActive(true);
     }
 
-    //— –Ê‚ğ”ñ•\¦
+    //è£é¢ã‚’éè¡¨ç¤º
     public void OffSynthesisPanel()
     {
         SynthesisButtonPanel.SetActive(false);

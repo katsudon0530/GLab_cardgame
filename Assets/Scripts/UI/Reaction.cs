@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,13 +18,13 @@ public class Reaction : MonoBehaviour
         }
     }
 
-    //ƒJ[ƒh‚©‚çƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ªo‚½‚ÌƒŠƒAƒNƒVƒ‡ƒ“
+    //ã‚«ãƒ¼ãƒ‰ã‹ã‚‰ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒå‡ºãŸæ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public void ButtonPointerExit()
     {
         ButtonReSet();
     }
 
-    //ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ‚à‚Æ‚É–ß‚·
+    //ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’ã‚‚ã¨ã«æˆ»ã™
     public void ButtonReSet()
     {
         Image imege;
@@ -36,7 +36,7 @@ public class Reaction : MonoBehaviour
         }
     }
     
-    //F‚ğ•Ï‰»‚³‚¹‚é
+    //è‰²ã‚’å¤‰åŒ–ã•ã›ã‚‹
     public void ChageColor()
     {
         imege = GetComponent<Image>();

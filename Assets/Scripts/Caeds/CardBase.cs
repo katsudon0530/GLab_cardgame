@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -43,7 +43,7 @@ public enum SynthesisType
 }
 
 
-//Œã‚ë‚ÌƒJ[ƒh‚É—^‚¦‚éƒGƒtƒFƒNƒg
+//å¾Œã‚ã®ã‚«ãƒ¼ãƒ‰ã«ä¸ãˆã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 [Serializable]
 public class CardEffect
 {

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +14,7 @@ public class SubmitPosition : MonoBehaviour
     public List<Card> Submitlist { get => submitlist; set => submitlist = value; }
 
 
-    //ƒJ[ƒh‚ğƒtƒB[ƒ‹ƒh‚ÉƒZƒbƒg‚·‚é
+    //ã‚«ãƒ¼ãƒ‰ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ã‚»ãƒƒãƒˆã™ã‚‹
     public void Set(Card card)
     {
         if (Submitlist.Count < 2 )
@@ -37,7 +37,7 @@ public class SubmitPosition : MonoBehaviour
         effectSwitch(Submitlist);
     }
 
-    //ê‚ÌƒJ[ƒh‚ğÁ‹‚·‚é
+    //å ´ã®ã‚«ãƒ¼ãƒ‰ã‚’æ¶ˆå»ã™ã‚‹
     public void DeleteCard()
     {
         for (int i = 0; i < Submitlist.Count; i++)
@@ -48,7 +48,7 @@ public class SubmitPosition : MonoBehaviour
         submitCard = null;
     }
 
-    //ƒJ[ƒh‚ğƒŠƒXƒg‚É’Ç‰Á
+    //ã‚«ãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
     void Add(Card card)
     {
         Submitlist.Add(card);
@@ -57,7 +57,7 @@ public class SubmitPosition : MonoBehaviour
         SubmitPositionIn();
     }
 
-    //ƒJ[ƒh‚ğƒŠƒXƒg‚©‚çíœ
+    //ã‚«ãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
     public void ReRemove(Card card)
     {
         Submitlist.Remove(card);
@@ -67,7 +67,7 @@ public class SubmitPosition : MonoBehaviour
         }
     }
 
-    //ƒtƒB[ƒ‹ƒh‚É’u‚©‚ê‚½ƒJ[ƒh‚ÌˆÊ’u‚ğ®—ñ‚³‚¹‚é
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ç½®ã‹ã‚ŒãŸã‚«ãƒ¼ãƒ‰ã®ä½ç½®ã‚’æ•´åˆ—ã•ã›ã‚‹
     public void SubmitPositionIn()
     {
         for (int i = 0; i < Submitlist.Count; i++)
@@ -82,7 +82,7 @@ public class SubmitPosition : MonoBehaviour
         effectSwitch(Submitlist);
     }
 
-    //‚Ç‚ÌƒGƒtƒFƒNƒg‚ª•t‚­‚©‚ğ”»•Ê‚·‚é
+    //ã©ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒä»˜ãã‹ã‚’åˆ¤åˆ¥ã™ã‚‹
     public void effectSwitch(List<Card> submitCards)
     {
         for(int i = 0;i < submitCards.Count;i++)
@@ -104,7 +104,7 @@ public class SubmitPosition : MonoBehaviour
         }
     }
 
-    //ƒGƒtƒFƒNƒg‚ğ•\¦‚·‚é
+    //ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
     private void effectJudgement(float magnification,Card card)
     {
         effectScaleReSet(card);
@@ -124,7 +124,7 @@ public class SubmitPosition : MonoBehaviour
         }
     }
 
-    //ƒGƒtƒFƒNƒg•\¦‚ğÁ‚·
+    //ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚’æ¶ˆã™
     public void effectReSet(Card card)
     {
         effectScaleReSet(card);

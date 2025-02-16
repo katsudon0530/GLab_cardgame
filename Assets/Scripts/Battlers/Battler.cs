@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,14 +9,14 @@ public class Battler : MonoBehaviour
     [SerializeField] BattlerHand hand;
     [SerializeField] SubmitPosition submitPosition;
 
-    [Header("ƒvƒŒƒCƒ„[ƒx[ƒXƒXƒe[ƒ^ƒX")]
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ™ãƒ¼ã‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹")]
     [SerializeField] int lifeMax;
     [SerializeField] int AttackBase;
     [SerializeField] int MagicAttackBase;
     [SerializeField] int HealBase;
     [SerializeField] int guardBase;
     [Space(10)]
-    [Header("À”’l")]
+    [Header("å®Ÿæ•°å€¤")]
     [SerializeField] int life;
     [SerializeField] int attack;
     [SerializeField] int magicAttack;
@@ -55,14 +55,14 @@ public class Battler : MonoBehaviour
         Heal = HealBase;
         Guard = guardBase;
     }
-    //¶¬‚³‚ê‚½ƒJ[ƒh‚ğƒŠƒXƒg‚É’Ç‰ÁEƒJ[ƒhƒNƒŠƒbƒN‚ÌŒø‰Ê’Ç‰Á
+    //ç”Ÿæˆã•ã‚ŒãŸã‚«ãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ãƒ»ã‚«ãƒ¼ãƒ‰ã‚¯ãƒªãƒƒã‚¯æ™‚ã®åŠ¹æœè¿½åŠ 
     public void SerCardToHand(Card card)
     {
         hand.Add(card);
         card.OnClickCard = SelectedCard;
     }
 
-    //ƒJ[ƒhƒNƒŠƒbƒN‚ÌƒŠƒAƒNƒVƒ‡ƒ“
+    //ã‚«ãƒ¼ãƒ‰ã‚¯ãƒªãƒƒã‚¯æ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public void SelectedCard(Card card)
     {
         if (IsSubmitted)
@@ -91,7 +91,7 @@ public class Battler : MonoBehaviour
         }
     }
 
-    //Œˆ’èƒ{ƒ^ƒ““ü—Í‚És‚¤ƒAƒNƒVƒ‡ƒ“
+    //æ±ºå®šãƒœã‚¿ãƒ³å…¥åŠ›æ™‚ã«è¡Œã†ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public void OnSubmitButton()
     {
         IsSubmitted = true;
@@ -105,7 +105,7 @@ public class Battler : MonoBehaviour
     }
 
 
-    //Ÿ‚Ìƒ^[ƒ“‚Å‚ÌŠÖ”‚ÌƒŠƒZƒbƒg
+    //æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã§ã®é–¢æ•°ã®ãƒªã‚»ãƒƒãƒˆ
     public void SetupNext()
     {
         IsSubmitted = false;

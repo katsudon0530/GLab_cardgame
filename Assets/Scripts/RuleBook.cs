@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
@@ -12,7 +12,7 @@ public class RuleBook : MonoBehaviour
 
 
 
-    //ˆê–‡‘O‚ÌƒJ[ƒh‚Ì’Ç‰ÁŒø‰Êˆ—
+    //ä¸€æšå‰ã®ã‚«ãƒ¼ãƒ‰ã®è¿½åŠ åŠ¹æœå‡¦ç†
     public void FlontEffect(Battler player, Card flontCard)
     {
         if (flontCard == null)
@@ -28,7 +28,7 @@ public class RuleBook : MonoBehaviour
         }
     }
 
-    //‡¬ƒJ[ƒh‚ÉŠ|‚©‚é”{—¦
+    //åˆæˆã‚«ãƒ¼ãƒ‰ã«æ›ã‹ã‚‹å€ç‡
     public void TypeEffect(Battler player, Card card)
     {
         if (card.Base.SynthesisType == SynthesisType.Normal)
@@ -43,7 +43,7 @@ public class RuleBook : MonoBehaviour
         }
     }
 
-    //ƒJ[ƒh‚ÌŒø‰Êˆ—
+    //ã‚«ãƒ¼ãƒ‰ã®åŠ¹æœå‡¦ç†
     public void selectedCardVS(Battler player, Card card, Enemy enemy)
     {
         //card.Base.Type.PlayCard(player, enemy, kekka);
@@ -54,7 +54,7 @@ public class RuleBook : MonoBehaviour
             float defense = 1f - enemy.Base.EnemyDefense / 100f;
             int damage = (int)(Hit * defense);
             enemy.Base.EnemyLife -= damage;
-            kekka.text = $"{damage}ƒ_ƒ[ƒW—^‚¦‚½";
+            kekka.text = $"{damage}ãƒ€ãƒ¡ãƒ¼ã‚¸ä¸ãˆãŸ";
             if (enemy.Base.EnemyLife < 0)
             {
                 enemy.Base.EnemyLife = 0;
@@ -67,7 +67,7 @@ public class RuleBook : MonoBehaviour
             float defense = 1f - enemy.Base.EnemyMagicDefense / 100f;
             int damage = (int)(Hit * defense);
             enemy.Base.EnemyLife -= damage;
-            kekka.text = $"{damage}–‚–@ƒ_ƒ[ƒW‚ ‚½‚¦‚½";
+            kekka.text = $"{damage}é­”æ³•ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚ãŸãˆãŸ";
             if (enemy.Base.EnemyLife < 0)
             {
                 enemy.Base.EnemyLife = 0;
@@ -81,7 +81,7 @@ public class RuleBook : MonoBehaviour
             {
                 player.Defens = 100;
             }
-            kekka.text = $"{player.Defens}‚Ú‚¤‚¬‚å‚ª‚ ‚ª‚Á‚½";
+            kekka.text = $"{player.Defens}ã¼ã†ãã‚‡ãŒã‚ãŒã£ãŸ";
         }
         else if (card.Base.Type == CardType.Heal)
         {
@@ -91,12 +91,12 @@ public class RuleBook : MonoBehaviour
                 player.Heal = player.LifeMax - player.Life;
             }
             player.Life += player.Heal;
-            kekka.text = $"{player.Heal}HP‚©‚¢‚Ó‚­‚µ‚½";
+            kekka.text = $"{player.Heal}HPã‹ã„ãµãã—ãŸ";
         }
 
     }
 
-    //ƒGƒlƒ~[‚Ì‹­—ÍUŒ‚‚Ü‚Å‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“
+    //ã‚¨ãƒãƒŸãƒ¼ã®å¼·åŠ›æ”»æ’ƒã¾ã§ã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
     public void EnemyCountDown(Enemy enemy)
     {
         if (enemy.Base.Count1 == 0)
@@ -111,7 +111,7 @@ public class RuleBook : MonoBehaviour
         }
     }
 
-    //“G‚Ìƒ^[ƒ“ˆ—
+    //æ•µã®ã‚¿ãƒ¼ãƒ³å‡¦ç†
     public void EnemyAttack(Battler player, Enemy enemy)
     {
         int Hit = (int)(enemy.Base.EnemyAttack * Random.Range(0.8f, 1.1f));
@@ -123,34 +123,34 @@ public class RuleBook : MonoBehaviour
         }
         Hit = (int)(Hit * Decrease);
         player.Life -= Hit;
-        kekka.text = $"{Hit}ƒ_ƒ[ƒW‚ğ‚¤‚¯‚½";
+        kekka.text = $"{Hit}ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ã†ã‘ãŸ";
 
     }
 
-    //“G‚Ìó‘Ô•\¦
+    //æ•µã®çŠ¶æ…‹è¡¨ç¤º
     public void EnemyParLife(Enemy enemy)
     {
         float RestLife = (float)enemy.Base.EnemyLife / (float)enemy.Base.EnemyLifeMax;
 
         if (RestLife == 1f)
         {
-            kekka.text = "‘S‚­‚Â‚¢‚Ä‚¢‚È‚¢I";
+            kekka.text = "å…¨ãå‚·ã¤ã„ã¦ã„ãªã„ï¼";
         }
         else if (RestLife > 0.7f)
         {
-            kekka.text = $"{enemy.Base.Name1}‚Íƒsƒ“ƒsƒ“‚µ‚Ä‚¢‚é";
+            kekka.text = $"{enemy.Base.Name1}ã¯ãƒ”ãƒ³ãƒ”ãƒ³ã—ã¦ã„ã‚‹";
         }
         else if (RestLife > 0.4f)
         {
-            kekka.text = $"{enemy.Base.Name1}‚Í”æ‚ên‚ß‚Ä‚¢‚é";
+            kekka.text = $"{enemy.Base.Name1}ã¯ç–²ã‚Œå§‹ã‚ã¦ã„ã‚‹";
         }
         else
         {
-            kekka.text = $"{enemy.Base.Name1}‚Í‚à‚¤ƒ{ƒƒ{ƒ‚¾I";
+            kekka.text = $"{enemy.Base.Name1}ã¯ã‚‚ã†ãƒœãƒ­ãƒœãƒ­ã ï¼";
         }
     }
 
-    //Œ‹‰Ê‚ÌƒeƒLƒXƒgƒŠƒZƒbƒg
+    //çµæœã®ãƒ†ã‚­ã‚¹ãƒˆãƒªã‚»ãƒƒãƒˆ
     public void TextSetupNext()
     {
         kekka.text = "";

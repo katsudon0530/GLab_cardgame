@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -31,7 +31,7 @@ public class GameUI : MonoBehaviour
     public GameObject DeckPanel { get => deckPanel; set => deckPanel = value; }
     public GameObject KekkaPanel { get => kekkaPanel; set => kekkaPanel = value; }
 
-    //UI‚Ì”ñ•\¦‰»
+    //UIã®éè¡¨ç¤ºåŒ–
     public void UISetUp()
     {
         kekkaPanel.SetActive(false);
@@ -52,21 +52,21 @@ public class GameUI : MonoBehaviour
         ruleText6.gameObject.SetActive(false);
     }
 
-    //”š’Ç‰Á‚ÌUI‚ğ•\¦‚·‚é‚©‚µ‚È‚¢‚©‚Ì”»•Ê
+    //æ•°å­—è¿½åŠ ã®UIã‚’è¡¨ç¤ºã™ã‚‹ã‹ã—ãªã„ã‹ã®åˆ¤åˆ¥
 
-    //ƒ‰ƒCƒt‚Ì•\¦E•ÏX
+    //ãƒ©ã‚¤ãƒ•ã®è¡¨ç¤ºãƒ»å¤‰æ›´
     public void ShowLifes(int playerLife)
     {
         playerLifeText.text = $"{playerLife}HP";
     }
 
-    //Œo‰ßƒ^[ƒ“”‚ğƒJƒEƒ“ƒg‚·‚é
+    //çµŒéã‚¿ãƒ¼ãƒ³æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
     public void ShowTurn(int turnCount)
     {
-        TurnText.text = $"ƒ^[ƒ“ {turnCount}";
+        TurnText.text = $"ã‚¿ãƒ¼ãƒ³ {turnCount}";
     }
 
-    //ƒQ[ƒ€‚ÌŸ”s‚ğƒpƒlƒ‹‚Å•\¦
+    //ã‚²ãƒ¼ãƒ ã®å‹æ•—ã‚’ãƒ‘ãƒãƒ«ã§è¡¨ç¤º
     public void ShowGameResult(string result , int turnCount)
     {
         resultPanel.SetActive(true);
@@ -74,7 +74,7 @@ public class GameUI : MonoBehaviour
         if (result == "WIN")
         {
             TurnResultText.gameObject.SetActive(true);
-            TurnResultText.text = $"Œo‰ßƒ^[ƒ“F{turnCount}";
+            TurnResultText.text = $"çµŒéã‚¿ãƒ¼ãƒ³ï¼š{turnCount}";
         }
         else
         {
@@ -155,21 +155,21 @@ public class GameUI : MonoBehaviour
         switch (enemy.Base.Type)
         {
             case EnemyType.Slime:
-                kekka.text = $"{enemy.Base.Name1}‚ÌUŒ‚";
+                kekka.text = $"{enemy.Base.Name1}ã®æ”»æ’ƒ";
                 yield return new WaitForSeconds(1f);
-                kekka.text = ($"{enemy.Base.Name1}‚Ì—n‰ğ‰tI");
+                kekka.text = ($"{enemy.Base.Name1}ã®æº¶è§£æ¶²ï¼");
                 yield return new WaitForSeconds(1.2f);
                 break;
             case EnemyType.Golem:
-                kekka.text = $"{enemy.Base.Name1}‚ÌUŒ‚";
+                kekka.text = $"{enemy.Base.Name1}ã®æ”»æ’ƒ";
                 yield return new WaitForSeconds(1f);
-                kekka.text = ($"{enemy.Base.Name1}‚ÌƒOƒŒ[ƒgƒpƒ“ƒ`I");
+                kekka.text = ($"{enemy.Base.Name1}ã®ã‚°ãƒ¬ãƒ¼ãƒˆãƒ‘ãƒ³ãƒï¼");
                 yield return new WaitForSeconds(1.2f);
                 break;
             case EnemyType.Dragon:
-                kekka.text = ($"{enemy.Base.Name1}‚ÌUŒ‚");
+                kekka.text = ($"{enemy.Base.Name1}ã®æ”»æ’ƒ");
                 yield return new WaitForSeconds(1f);
-                kekka.text = ($"{enemy.Base.Name1}‚Ìƒtƒ@ƒCƒAƒuƒŒƒXI");
+                kekka.text = ($"{enemy.Base.Name1}ã®ãƒ•ã‚¡ã‚¤ã‚¢ãƒ–ãƒ¬ã‚¹ï¼");
                 yield return new WaitForSeconds(1.2f);
                 break;
         }

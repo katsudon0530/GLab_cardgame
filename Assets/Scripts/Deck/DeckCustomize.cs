@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -16,7 +16,7 @@ public class DeckCustomize : MonoBehaviour
         card.OnClickCard = SelectedDeckCard;
     }
 
-    //ƒJ[ƒhƒNƒŠƒbƒN‚ÌƒŠƒAƒNƒVƒ‡ƒ“
+    //ã‚«ãƒ¼ãƒ‰ã‚¯ãƒªãƒƒã‚¯æ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public void SelectedDeckCard(Card card)
     {
         if (card.transform.parent == deckContents.transform)

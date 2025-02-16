@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -37,13 +37,13 @@ public class GameMaster : MonoBehaviour
         deck.DeckDefault();
     }
 
-    //ƒ‚ƒ“ƒXƒ^[‚ğƒZƒŒƒNƒg‚µ‚½Œã‚ÌƒZƒbƒgƒAƒbƒv
+    //ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ã‚»ãƒ¬ã‚¯ãƒˆã—ãŸå¾Œã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
     public void Serect()
     {
         serectPanel.SetActive(false);
         Setup();
     }
-    //ƒQ[ƒ€ƒXƒ^[ƒg‚ÌƒZƒbƒgƒAƒbƒv“à—e
+    //ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å†…å®¹
     public void Setup()
     {
         player.SetPlayer();
@@ -68,7 +68,7 @@ public class GameMaster : MonoBehaviour
         gameUI.ShowTurn(TurnCount);
     }
 
-    //ƒtƒB[ƒ‹ƒh‚ÉƒJ[ƒh‚ªİ’u‚³‚ê‚Ä‚¢‚é‚©‚Ì”»’èEŒˆ’èƒ{ƒ^ƒ“‚Ìíœ
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ã‚«ãƒ¼ãƒ‰ãŒè¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‹ã®åˆ¤å®šãƒ»æ±ºå®šãƒœã‚¿ãƒ³ã®å‰Šé™¤
 
     void SubmittedAction()
     {
@@ -79,7 +79,7 @@ public class GameMaster : MonoBehaviour
 
     }
 
-    //ƒtƒB[ƒ‹ƒh‚ÉƒJ[ƒh‚ªİ’u‚³‚ê‚Ä‚¢‚é‚©‚Ì”»’èEŒˆ’èƒ{ƒ^ƒ“‚Ìíœ
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ã‚«ãƒ¼ãƒ‰ãŒè¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‹ã®åˆ¤å®šãƒ»æ±ºå®šãƒœã‚¿ãƒ³ã®å‰Šé™¤
     void SynthesisAction()
     {
         submitButton.SetActive(false);
@@ -88,7 +88,7 @@ public class GameMaster : MonoBehaviour
 
     }
 
-    //èD‚ğ¶¬
+    //æ‰‹æœ­ã‚’ç”Ÿæˆ
     void SendCardTo(Battler battler)
     {
         if(deck.cardDeck.Count != 0)
@@ -126,7 +126,7 @@ public class GameMaster : MonoBehaviour
         deck.RestDeck();
     }
 
-    //ƒJ[ƒhƒoƒgƒ‹EŸ”s”»’è
+    //ã‚«ãƒ¼ãƒ‰ãƒãƒˆãƒ«ãƒ»å‹æ•—åˆ¤å®š
     IEnumerator CardBattle()
     {
         gameUI.KekkaPanel.SetActive(true);
@@ -164,7 +164,7 @@ public class GameMaster : MonoBehaviour
 
         StartCoroutine(EnemyAttack());
     }
-    //ƒJ[ƒh‡¬‚·‚é
+    //ã‚«ãƒ¼ãƒ‰åˆæˆã™ã‚‹
     IEnumerator CardSynthesis()
     {
         gameUI.KekkaPanel.SetActive(true);
@@ -179,7 +179,7 @@ public class GameMaster : MonoBehaviour
         }
         yield return new WaitForSeconds(0.7f);
 
-        //‡¬ƒJ[ƒh‚É•Ï‰»‚³‚¹‚Ù‚©‚ÌƒJ[ƒh‚ğ‰ó‚·
+        //åˆæˆã‚«ãƒ¼ãƒ‰ã«å¤‰åŒ–ã•ã›ã»ã‹ã®ã‚«ãƒ¼ãƒ‰ã‚’å£Šã™
         synthesis.CardSynthesis(player.SubmitList, deck.DeckAll);
         yield return StartCoroutine(CardSlide(player.SubmitList[0], player.SubmitPosition.transform.position, 0.7f));
         yield return new WaitForSeconds(0.2f);
@@ -192,7 +192,7 @@ public class GameMaster : MonoBehaviour
         StartCoroutine(EnemyAttack());
     }
 
-    //ƒJ[ƒh‚ğƒXƒ‰ƒCƒh‚³‚¹‚é
+    //ã‚«ãƒ¼ãƒ‰ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ã•ã›ã‚‹
     IEnumerator CardSlide(Card card, Vector2 goal, float slideDuration)
     {
         float elapsedTime = 0.0f;
@@ -212,12 +212,12 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator EnemyAttack()
     {
-        //“G‚ÌUŒ‚éŒ¾
+        //æ•µã®æ”»æ’ƒå®£è¨€
         ruleBook.TextSetupNext();
         gameUI.KekkaPanel.SetActive(true);
         yield return StartCoroutine(gameUI.Sengen(enemy));
 
-        //“G‚ÌUŒ‚
+        //æ•µã®æ”»æ’ƒ
         ruleBook.EnemyAttack(player, enemy);
         if (player.Life <= 0)
         {
@@ -234,7 +234,7 @@ public class GameMaster : MonoBehaviour
         SetupNextTurn();
     }
 
-    //ƒQ[ƒ€‚ÌŒ‹‰Ê‚ğ•\¦‚·‚é
+    //ã‚²ãƒ¼ãƒ ã®çµæœã‚’è¡¨ç¤ºã™ã‚‹
     void ShowResult()
     {
         if (player.Life == 0)
@@ -244,11 +244,11 @@ public class GameMaster : MonoBehaviour
             gameUI.ShowGameResult("WIN" ,TurnCount);
     }
 
-    //Ÿƒ^[ƒ“‚ÉŒü‚¯‚Ä‚ÌƒŠƒZƒbƒg‚Æ€”õ
+    //æ¬¡ã‚¿ãƒ¼ãƒ³ã«å‘ã‘ã¦ã®ãƒªã‚»ãƒƒãƒˆã¨æº–å‚™
 
     void SetupNextTurn()
     {
-        Debug.Log($"“G‚ÌLifeF{enemy.Base.EnemyLife}");
+        Debug.Log($"æ•µã®Lifeï¼š{enemy.Base.EnemyLife}");
         player.SetupNext();
         ruleBook.TextSetupNext();
         ruleBook.EnemyCountDown(enemy);
@@ -262,7 +262,7 @@ public class GameMaster : MonoBehaviour
         gameUI.ShowTurn(TurnCount += 1);
     }
 
-    //ƒ{ƒ^ƒ“‚ğ‰Šú‰»‚·‚é
+    //ãƒœã‚¿ãƒ³ã‚’åˆæœŸåŒ–ã™ã‚‹
     void ResetButton()
     {
         Reaction riaction1 = submitButton.GetComponent<Reaction>();

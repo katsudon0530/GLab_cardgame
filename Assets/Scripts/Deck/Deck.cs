@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ public class Deck : MonoBehaviour
 
     public CardGenerator Generator { get => generator; set => generator = value; }
 
-    //ƒQ[ƒ€ŠJn‚ÉƒfƒbƒL‚ğƒfƒtƒHƒ‹ƒgó‘Ô‚É‚·‚é
+    //ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«ãƒ‡ãƒƒã‚­ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆçŠ¶æ…‹ã«ã™ã‚‹
     public void DeckDefault()
     {
         DeckAll = new List<int>(Base);
@@ -39,7 +39,7 @@ public class Deck : MonoBehaviour
         CustomCardListOpen();
     }
 
-    //ƒJƒXƒ^ƒ}ƒCƒY‚µ‚½ƒfƒbƒL‚ğƒZƒbƒg‚·‚é
+    //ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã—ãŸãƒ‡ãƒƒã‚­ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
     public void DeckSet()
     {
         cardDeck = new List<int>(DeckAll);
@@ -47,7 +47,7 @@ public class Deck : MonoBehaviour
         CardList.SetActive(false);
     }
 
-    //ƒfƒbƒLƒŠƒXƒg‚Ìˆê——‚ğ•\¦‚·‚é
+    //ãƒ‡ãƒƒã‚­ãƒªã‚¹ãƒˆã®ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹
     public void DeckListOpen()
     {
 
@@ -69,7 +69,7 @@ public class Deck : MonoBehaviour
         deckArignment();
     }
 
-    //ƒJƒXƒ^ƒ}ƒCƒY‚·‚é‚½‚ß‚ÌƒJ[ƒh‚ğ•\¦‚·‚é
+    //ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã™ã‚‹ãŸã‚ã®ã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã™ã‚‹
     public void CustomCardListOpen()
     {
         for (int i = 0; i <= (Generator.CardBases.Length - 1); i++)
@@ -85,7 +85,7 @@ public class Deck : MonoBehaviour
         CustomCardArignment();
     }
 
-    //ƒfƒbƒL‚ğƒ\[ƒg‚µ‚Ä”z’u‚·‚é
+    //ãƒ‡ãƒƒã‚­ã‚’ã‚½ãƒ¼ãƒˆã—ã¦é…ç½®ã™ã‚‹
     public void deckArignment()
     {
         Vector2 currentScale;
@@ -96,12 +96,12 @@ public class Deck : MonoBehaviour
         int a = (LookDeck.Count + DeckWidth - 1) / DeckWidth;
         LookDeck.Sort((card0, card1) => card0.Base.Number - card1.Base.Number);
 
-        //ƒXƒNƒ[ƒ‹c•‚Ìİ’è
+        //ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç¸¦å¹…ã®è¨­å®š
         currentScale = Contents.GetComponent<RectTransform>().sizeDelta;
         currentScale.y = DeckHeight * a + 50;
         Contents.GetComponent<RectTransform>().sizeDelta = currentScale;
 
-        //‰¡‚Ì•‚ğİ’è‚·‚é
+        //æ¨ªã®å¹…ã‚’è¨­å®šã™ã‚‹
         currentScale = ScrollScale.GetComponent<RectTransform>().sizeDelta;
         currentScale.x = 240f * DeckLookCount;
         ScrollScale.GetComponent<RectTransform>().sizeDelta = currentScale;
@@ -138,7 +138,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    //ƒJƒXƒ^ƒ}ƒCƒYƒJ[ƒh‚ğ•À‚×‚é
+    //ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã‚«ãƒ¼ãƒ‰ã‚’ä¸¦ã¹ã‚‹
     public void CustomCardArignment()
     {
         Vector2 currentScale;
@@ -146,7 +146,7 @@ public class Deck : MonoBehaviour
 
         LookCards.Sort((card0, card1) => card0.Base.Number - card1.Base.Number);
 
-        //ƒXƒNƒ[ƒ‹c•‚Ìİ’è
+        //ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç¸¦å¹…ã®è¨­å®š
         currentScale = Contents2.GetComponent<RectTransform>().sizeDelta;
         currentScale.y = DeckHeight * LookCards.Count + 50;
         Contents2.GetComponent<RectTransform>().sizeDelta = currentScale;
@@ -168,9 +168,9 @@ public class Deck : MonoBehaviour
         }
     }
 
-    //ƒfƒbƒL‚Ìc‚è–‡”‚ğ•\¦‚·‚é
+    //ãƒ‡ãƒƒã‚­ã®æ®‹ã‚Šæšæ•°ã‚’è¡¨ç¤ºã™ã‚‹
     public void RestDeck()
     {
-        RestText.text = $"c‚è{cardDeck.Count}–‡";
+        RestText.text = $"æ®‹ã‚Š{cardDeck.Count}æš";
     }
 }
