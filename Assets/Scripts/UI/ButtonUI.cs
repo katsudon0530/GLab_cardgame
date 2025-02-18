@@ -30,6 +30,9 @@ namespace UI
         [Header("クリック時の色")]
         [SerializeField]
         private　Color onClickedColor;
+        [Header("選択済みの時の色")]
+        [SerializeField]
+        private　Color selectedColor;
         [FormerlySerializedAs("_defaultColor")]
         [Header("ボタンのデフォルトの色")]
         [SerializeField]
@@ -49,14 +52,16 @@ namespace UI
         ///　遷移中のコルーチンがこの変数に都度保存される
         /// </summary>
         private Coroutine _colorCoroutine;
+        
+        private bool _selected;
     
-   
+        
         private bool OnCursor
         {
             get => _onCursor;
             set
             {
-                if (_onCursor != value)　// カーソルがボタン上にあるか判定しているboolの値が切り替わったとき
+                if (_onCursor != value )　// カーソルがボタン上にあるか判定しているboolの値が切り替わったとき
                 {
                     _onCursor = value;　// 変更を適用
                     if (_colorCoroutine != null)　
@@ -64,36 +69,38 @@ namespace UI
                         StopCoroutine(_colorCoroutine);
                         // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
                     }
-                    _colorCoroutine = StartCoroutine(ChangeColor(_onCursor ? onCursorColor : defaultColor));
-                    //色の切り替え開始　遷移中のコルーチンを変数に保存(遷移中であるかどうかの判定のため)
+
+                    if (!_selected)
+                    {
+                        _colorCoroutine = StartCoroutine(ChangeColor(_onCursor ? onCursorColor : defaultColor));
+                        //色の切り替え開始　遷移中のコルーチンを変数に保存(遷移中であるかどうかの判定のため)
+                    }
+                    
                 }
             }
         }
 
         private void Awake()
         {
+            _selected = false;
             _image = GetComponent<Image>();
             _image.color = defaultColor;　
-            _onClick += ChangeColorOnCliked;
         }
-        void ChangeColorOnCliked()
-        {
-            if (_colorCoroutine != null)　
-            {
-                StopCoroutine(_colorCoroutine);
-                // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
-            }
-
-            _colorCoroutine = StartCoroutine(OnclickedCoroutine(onClickedColor));
-        }
-
+       
         private void Update()
         {
             OnMouseCursor();
             if (OnCursor)
             {
-                if (Input.GetMouseButtonDown(0)) //左クリック時に
+                if (Input.GetMouseButtonUp(0)) //左クリック時に
                 {
+                    if (_colorCoroutine != null)　
+                    {
+                        StopCoroutine(_colorCoroutine);
+                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                    }
+                    _selected = true;
+                    _image.color = selectedColor;
                     if (_onClick == null)
                     {
                         Debug.Log("クリック時の処理が一つも登録されていません");
@@ -105,10 +112,26 @@ namespace UI
                     }
               
                 }
-            
-            
+                if (Input.GetMouseButton(0))
+                {
+                    if (_colorCoroutine != null)　
+                    {
+                        StopCoroutine(_colorCoroutine);
+                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                    }
+                    _image.color = onClickedColor;
+                }
+
+           
             }
-       
+
+        
+        }
+
+        IEnumerator WaitChjangeColor()
+        {
+            yield return new WaitForSeconds(clickedColorDuration);
+            _colorCoroutine = StartCoroutine(ChangeColor(selectedColor));
         }
 
         private void OnMouseCursor()
@@ -133,23 +156,5 @@ namespace UI
             _colorCoroutine = null;　// 遷移が終わったので中身を空にする
         }
 
-        IEnumerator OnclickedCoroutine(Color clickedColor)
-        {
-            Color startColor = _image.color;
-            _image.color = clickedColor;
-            yield return new WaitForSeconds(clickedColorDuration);
-            float elapsedTime = 0;　// 現在の遷移時間
-            while (elapsedTime < colorChangeTime)　// 決められた遷移時間になるまで繰り返す
-            {
-                elapsedTime += Time.deltaTime;　// 遷移時間を計算していく 
-                _image.color = Color.Lerp(clickedColor, startColor, elapsedTime /colorChangeTime); //色を徐々にtargetColorに切り替える（Lerpの第三引数は0~1の間で遷移するように）
-                yield return null;　
-            }
-            _image.color = startColor;　// 最終的な色の変更
-            _colorCoroutine = null;
-        }
-　　　
-    
-  
     }
 }
