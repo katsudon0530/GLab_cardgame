@@ -9,6 +9,7 @@ namespace UI
     public class ButtonUI : MonoBehaviour
     {
         private Image _image;
+        
     
         /// <summary>
         ///　クリックされたときに発火するAction
@@ -24,19 +25,15 @@ namespace UI
 
         [FormerlySerializedAs("_onCursorColor")]
         [Header("カーソルがボタン上にある時の色")]
-        [SerializeField]
-        private　Color onCursorColor;
+        public　Color onCursorColor;
         [FormerlySerializedAs("_onClickedColor")]
         [Header("クリック時の色")]
-        [SerializeField]
-        private　Color onClickedColor;
+        public　Color onClickedColor;
         [Header("選択済みの時の色")]
-        [SerializeField]
-        private　Color selectedColor;
+        public　Color selectedColor;
         [FormerlySerializedAs("_defaultColor")]
         [Header("ボタンのデフォルトの色")]
-        [SerializeField]
-        private Color defaultColor;
+        public Color defaultColor;
         [FormerlySerializedAs("_colorChangeTime")]
         [Header("色が切り替わるための遷移時間")]
         [SerializeField]
@@ -58,6 +55,7 @@ namespace UI
         private float _currentTime;
         
         private bool _onPress;
+        
         private bool OnCursor
         {
             get => _onCursor;
@@ -81,19 +79,26 @@ namespace UI
                 }
             }
         }
-
+        
+      
         private void Awake()
         {
             _selected = false;
             _image = GetComponent<Image>();
-            _image.color = defaultColor;　
+            _image.color = defaultColor;
+            _onClick += ForDebug;
+        }
+
+        void ForDebug()
+        {
+            Debug.Log(gameObject.name);
         }
        
         private void Update()
         {
-            OnMouseCursor();
-            OnClicked(); 
-            PressDown();
+                OnMouseCursor();
+                OnClicked(); 
+                PressDown();
         }
         
 
@@ -203,5 +208,6 @@ namespace UI
             _colorCoroutine = null;　// 遷移が終わったので中身を空にする
         }
 
+      
     }
 }
