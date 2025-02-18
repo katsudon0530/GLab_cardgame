@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ButtonUI : MonoBehaviour
@@ -19,20 +17,26 @@ public class ButtonUI : MonoBehaviour
     /// </summary>
     public Action OnClick{get => _onClick; set => _onClick = value;}
     
-    [FormerlySerializedAs("_OnCursorColor")] [SerializeField]
-    Color _onCursorColor;
     
-    [FormerlySerializedAs("_OnCursorColor")] [SerializeField]
-    Color _defaultColor;
+    /// <summary>
+    ///　カーソルがボタン上にあるときの色
+    /// </summary>
+    [SerializeField]
+    private　Color _onCursorColor;
+    /// <summary>
+    ///　デフォルトのボタンの色
+    /// </summary>
+    [SerializeField]
+    private Color _defaultColor;
     
-    private bool _onCursor = false;
+    private bool _onCursor;
     
     private Coroutine _colorCoroutine;
     
     [SerializeField]
     private float _colorChangeTime = 0.5f;  
 
-    public bool OnCursor
+    private bool OnCursor
     {
         get => _onCursor;
         set
@@ -88,9 +92,8 @@ public class ButtonUI : MonoBehaviour
     private void OnMouseCursor()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
-        Vector2 localPoint = Vector2.zero;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTransform, Input.mousePosition, Camera.main, out localPoint); // 第一引数に入れたRectTransformに対する第二引数のローカル座標をRectTransform基準で返す
+            rectTransform, Input.mousePosition, Camera.main, out Vector2 localPoint); // 第一引数に入れたRectTransformに対する第二引数のローカル座標をRectTransform基準で返す
         OnCursor = rectTransform.rect.Contains(localPoint);　//　カーソルのローカル座標がimageの範囲内にあるかどうかを返す
     }
 
