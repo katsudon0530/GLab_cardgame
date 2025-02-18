@@ -96,13 +96,15 @@ public class ButtonUI : MonoBehaviour
 
     IEnumerator ChangeColor(Color targetColor)
     {
+        Color startColor = _image.color;
         float elapsedTime = 0;
         while (elapsedTime < _colorChangeTime)
         {
             elapsedTime += Time.deltaTime;
-            _image.color = Color.Lerp(_image.color, targetColor, _colorChangeTime);
+            _image.color = Color.Lerp(startColor, targetColor, elapsedTime /_colorChangeTime);
             yield return null;
         }
+        _image.color = targetColor;
         _colorCoroutine = null;
     }
 
