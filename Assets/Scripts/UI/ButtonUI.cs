@@ -121,7 +121,15 @@ namespace UI
                 }
                 else
                 {
-                    _colorCoroutine = StartCoroutine(ChangeColor(defaultColor));
+                    if (!_selected)
+                    {
+                        _colorCoroutine = StartCoroutine(ChangeColor(defaultColor));
+                    }
+                    else
+                    {
+                        _colorCoroutine = StartCoroutine(ChangeColor(selectedColor));
+                    }
+                   
                 }
 
             }
