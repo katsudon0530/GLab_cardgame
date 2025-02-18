@@ -92,47 +92,51 @@ namespace UI
             OnMouseCursor();
             if (OnCursor)
             {
-                if (Input.GetMouseButtonUp(0)) //左クリック時に
-                {
-                    if (_colorCoroutine != null)　
-                    {
-                        StopCoroutine(_colorCoroutine);
-                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
-                    }
-                    _selected = true;
-                    _image.color = selectedColor;
-                    if (_onClick == null)
-                    {
-                        Debug.Log("クリック時の処理が一つも登録されていません");
-                    }
-                    else
-                    {
-                        _onClick.Invoke();　
-                        //　Actionを発火（Actionの中身がnullの場合を考慮）
-                    }
-              
-                }
-                if (Input.GetMouseButton(0))
-                {
-                    if (_colorCoroutine != null)　
-                    {
-                        StopCoroutine(_colorCoroutine);
-                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
-                    }
-                    _image.color = onClickedColor;
-                }
+                OnClicked();
 
-           
+                OnPressDown();
             }
 
         
         }
 
-        IEnumerator WaitChjangeColor()
+        private void OnClicked()
         {
-            yield return new WaitForSeconds(clickedColorDuration);
-            _colorCoroutine = StartCoroutine(ChangeColor(selectedColor));
+            if (Input.GetMouseButtonUp(0)) //左クリック時に
+            {
+                if (_colorCoroutine != null)　
+                {
+                    StopCoroutine(_colorCoroutine);
+                    // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                }
+                _selected = true;
+                _image.color = selectedColor;
+                if (_onClick == null)
+                {
+                    Debug.Log("クリック時の処理が一つも登録されていません");
+                }
+                else
+                {
+                    _onClick.Invoke();　
+                    //　Actionを発火（Actionの中身がnullの場合を考慮）
+                }
+              
+            }
         }
+
+        private void OnPressDown()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (_colorCoroutine != null)　
+                {
+                    StopCoroutine(_colorCoroutine);
+                    // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                }
+                _image.color = onClickedColor;
+            }
+        }
+
 
         private void OnMouseCursor()
         {
