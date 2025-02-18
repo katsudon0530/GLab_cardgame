@@ -54,8 +54,10 @@ namespace UI
         private Coroutine _colorCoroutine;
         
         private bool _selected;
-    
+
+        private float _currentTime;
         
+        private bool _onPress;
         private bool OnCursor
         {
             get => _onCursor;
@@ -70,7 +72,7 @@ namespace UI
                         // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
                     }
 
-                    if (!_selected)
+                    if (!_selected && !_onPress)
                     {
                         _colorCoroutine = StartCoroutine(ChangeColor(_onCursor ? onCursorColor : defaultColor));
                         //色の切り替え開始　遷移中のコルーチンを変数に保存(遷移中であるかどうかの判定のため)
@@ -90,50 +92,91 @@ namespace UI
         private void Update()
         {
             OnMouseCursor();
-            if (OnCursor)
-            {
-                OnClicked();
-
-                OnPressDown();
-            }
-
-        
+            OnClicked(); 
+            PressDown();
         }
+        
 
         private void OnClicked()
         {
             if (Input.GetMouseButtonUp(0)) //左クリック時に
             {
-                if (_colorCoroutine != null)　
+                if (_onCursor)
                 {
-                    StopCoroutine(_colorCoroutine);
-                    // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
-                }
-                _selected = true;
-                _image.color = selectedColor;
-                if (_onClick == null)
-                {
-                    Debug.Log("クリック時の処理が一つも登録されていません");
+                       
+                    if (_colorCoroutine != null)
+                    {
+                        StopCoroutine(_colorCoroutine);
+                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                    }
+
+                    _selected = true;
+                    ChangeToSelectedColor();
+                    ActionInvoke();
                 }
                 else
                 {
-                    _onClick.Invoke();　
-                    //　Actionを発火（Actionの中身がnullの場合を考慮）
+                    _colorCoroutine = StartCoroutine(ChangeColor(defaultColor));
                 }
-              
+
+            }
+            
+        }
+
+        private void ActionInvoke()
+        {
+            if (_onClick == null)
+            {
+                Debug.Log("クリック時の処理が一つも登録されていません");
+            }
+            else
+            {
+                _onClick.Invoke();
+                //　Actionを発火（Actionの中身がnullの場合を考慮）
             }
         }
 
-        private void OnPressDown()
+        private void ChangeToSelectedColor()
+        {
+            if (_currentTime < clickedColorDuration)
+            {
+                float time  = clickedColorDuration - colorChangeTime;
+                StartCoroutine(WaitChangeColor(time));
+
+            }
+            else
+            {
+                _image.color = selectedColor;
+            }
+        }
+
+        IEnumerator WaitChangeColor(float time)
+        {
+            yield return new WaitForSeconds(time);
+            _image.color = selectedColor;
+        }
+
+        private void PressDown()
         {
             if (Input.GetMouseButton(0))
             {
-                if (_colorCoroutine != null)　
+                _onPress = true;
+                if (_onCursor)
                 {
-                    StopCoroutine(_colorCoroutine);
-                    // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                    _currentTime += Time.deltaTime;
+                    if (_colorCoroutine != null)　
+                    {
+                        StopCoroutine(_colorCoroutine);
+                        // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
+                    }
+                    _image.color = onClickedColor;
                 }
-                _image.color = onClickedColor;
+               
+            }
+            else
+            {
+                _onPress = false;
+                _currentTime = 0;
             }
         }
 
