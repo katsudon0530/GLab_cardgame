@@ -609,7 +609,7 @@ MonoBehaviour:
   - {fileID: 1511205856}
   - {fileID: 853456192}
   - {fileID: 1832785506}
-  navigationMode: 1
+  navigationMode: 0
 --- !u!1 &1445144158
 GameObject:
   m_ObjectHideFlags: 0
