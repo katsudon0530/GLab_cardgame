@@ -9,7 +9,7 @@ namespace UI
     [SerializeField]
     GameObject[] buttons;
     
-    GameObject _currentButton ;
+    GameObject _currentButton;
     
     [SerializeField]
     private bool navigationMode;
@@ -19,30 +19,33 @@ namespace UI
     {
         if (navigationMode)
         {
-            Navigation();
+            Init();
         }
     }
 
     private void Update()
     {
-        ChangeButton();
-        SelectButton();
+        if (navigationMode)
+        {
+            ChangeButton();
+            SelectButton();
+        }
+       
     }
 
-    private void Navigation()
+    private void Init()
     {
             var image = buttons[0].GetComponent<Image>();
             var buttonUi = buttons[0].GetComponent<ButtonUI>();
-            image.color = buttonUi.onCursorColor;
-            _currentButton = buttons[0];
-            
+            image.color = buttonUi.onCursorColor; //　ボタンの色をハイライトの色に
+            _currentButton = buttons[0];　// 現在選択されているボタンを保存
     }
 
        
     private void ChangeButton()
     {
-            float minDiff =float.MaxValue;
-            GameObject nextButton = null;
+            float minDiff =float.MaxValue;　　// 選択中のボタンからの誤差(一番小さいもの)を求めるための変数
+            GameObject nextButton = null;　// 次に選択するボタン
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 foreach (var button in buttons)
@@ -55,18 +58,18 @@ namespace UI
                             minDiff = diff;
                             nextButton = button;
                         }
+                        //　→の入力の時に現在のボタンのｘよりも値が大きく、かつ誤差が一番小さいボタンをnextButtonとする
                     }
                 }
-
                 if (nextButton != null)
                 {
                     var buttonUi = _currentButton.GetComponent<ButtonUI>();
                     var image = _currentButton.GetComponent<Image>();
-                    image.color = buttonUi.defaultColor;
+                    image.color = buttonUi.defaultColor;　// 現在の選択済みのボタンをdefaultColorに
                     var nextImage = nextButton.GetComponent<Image>();
                     var nextButtonUi = nextButton.GetComponent<ButtonUI>();
-                    nextImage.color = nextButtonUi.onCursorColor;
-                    _currentButton = nextButton;
+                    nextImage.color = nextButtonUi.onCursorColor;　// 次に選択するボタンをハイライトColorに
+                    _currentButton = nextButton;　// 変更を適用
                   
                 }
               
@@ -83,6 +86,8 @@ namespace UI
                             minDiff = diff;
                             nextButton = button;
                         }
+                        //　↑の入力の時に現在のボタンのｙよりも値が大きく、かつ誤差が一番小さいボタンをnextButtonとする
+                        
                     }
                 }
 
@@ -109,6 +114,7 @@ namespace UI
                             minDiff = diff;
                             nextButton = button;
                         }
+                        //　←の入力の時に現在のボタンのｘよりも値が小さく、かつ誤差が一番小さいボタンをnextButtonとする
                     }
                 }
 
@@ -135,6 +141,7 @@ namespace UI
                             minDiff = diff;
                             nextButton = button;
                         }
+                        //　↓の入力の時に現在のボタンのｙよりも値が小さく、かつ誤差が一番小さいボタンをnextButtonとする
                     }
                 }
 
@@ -161,6 +168,7 @@ namespace UI
             var buttonUi = _currentButton.GetComponent<ButtonUI>();
             image.color = buttonUi.selectedColor;
             buttonUi.OnClick?.Invoke();
+            // Enterキーが押されたときにOnClickを発火
         }
     }
 }

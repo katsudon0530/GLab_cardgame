@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+
+
 namespace UI
 {
     public class ButtonUI : MonoBehaviour
@@ -20,6 +22,9 @@ namespace UI
         ///　このActionにクリック時に発火させたい処理を追加する
         /// </summary>
         public Action OnClick{get => _onClick; set => _onClick = value;}
+        
+        [SerializeField]
+        private string text;
 
         #region ColorSettings
 
@@ -50,10 +55,19 @@ namespace UI
         /// </summary>
         private Coroutine _colorCoroutine;
         
+        /// <summary>
+        ///　選択済みであるかどうかのフラグ
+        /// </summary>
         private bool _selected;
 
+        /// <summary>
+        ///　クリックしてからの時間を計測する変数
+        /// </summary>
         private float _currentTime;
         
+        /// <summary>
+        ///　キーが押されているかどうかのフラグ
+        /// </summary>
         private bool _onPress;
         
         private bool OnCursor
@@ -83,15 +97,31 @@ namespace UI
       
         private void Awake()
         {
-            _selected = false;
+            Init();
+            
+        }
+        
+        
+        /// <summary>
+        ///　初期化処理
+        /// </summary>
+        private void Init()
+        {
+            _selected = false;　// 選択されていない状態
             _image = GetComponent<Image>();
             _image.color = defaultColor;
             _onClick += ForDebug;
+
+            var buttonText = transform.GetComponentInChildren<Text>();
+            if (buttonText == null)
+            {
+                Debug.Log("Textコンポーネントが見つかりません。追加する場合はボタンの子オブジェクトにTextコンポーネントを配置してください");
+            }
         }
 
         void ForDebug()
         {
-            Debug.Log(gameObject.name);
+            Debug.Log($"{gameObject.name}がクリックされました");
         }
        
         private void Update()
@@ -102,6 +132,9 @@ namespace UI
         }
         
 
+        /// <summary>
+        ///　クリックされたときの処理
+        /// </summary>
         private void OnClicked()
         {
             if (Input.GetMouseButtonUp(0)) //左クリック時に
@@ -115,19 +148,21 @@ namespace UI
                         // 色の変更の遷移中であるときに_onCursorが切り替わった時に現在の遷移を止める　
                     }
 
-                    _selected = true;
-                    ChangeToSelectedColor();
+                    _selected = true;　// 選択済みに
+                    ChangeToSelectedColor();　// ボタンの色を選択済みに
                     ActionInvoke();
                 }
                 else
                 {
                     if (!_selected)
                     {
-                        _colorCoroutine = StartCoroutine(ChangeColor(defaultColor));
+                        _colorCoroutine = StartCoroutine(ChangeColor(defaultColor)); 
+                        //カーゾルがクリックしたままボタン外に行った場合デフォルトの色に
                     }
                     else
                     {
                         _colorCoroutine = StartCoroutine(ChangeColor(selectedColor));
+                        //　既に選択済みである場合はいかなる場合でも選択済みの色に戻る
                     }
                    
                 }
@@ -148,13 +183,17 @@ namespace UI
                 //　Actionを発火（Actionの中身がnullの場合を考慮）
             }
         }
-
+        
+        /// <summary>
+        ///　選択済みの色に遷移するメソッド
+        /// </summary>
         private void ChangeToSelectedColor()
         {
             if (_currentTime < clickedColorDuration)
             {
                 float time  = clickedColorDuration - colorChangeTime;
                 StartCoroutine(WaitChangeColor(time));
+                // 押し始めから押し切るまでの時間が短い場合に最低でも clickedColorDuration分待ってから色の遷移を始める
 
             }
             else
@@ -176,7 +215,7 @@ namespace UI
                 _onPress = true;
                 if (_onCursor)
                 {
-                    _currentTime += Time.deltaTime;
+                    _currentTime += Time.deltaTime;　// 押し始めからの時間を計測
                     if (_colorCoroutine != null)　
                     {
                         StopCoroutine(_colorCoroutine);
@@ -189,11 +228,15 @@ namespace UI
             else
             {
                 _onPress = false;
-                _currentTime = 0;
+                _currentTime = 0;　
             }
         }
 
 
+        
+        /// <summary>
+        ///　マウスカーソルがボタン上にあるかどうかを判定する
+        /// </summary>
         private void OnMouseCursor()
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
@@ -201,7 +244,10 @@ namespace UI
                 rectTransform, Input.mousePosition, Camera.main, out Vector2 localPoint); // 第一引数に入れたRectTransformに対する第二引数のローカル座標をRectTransform基準で返す
             OnCursor = rectTransform.rect.Contains(localPoint);　//　カーソルのローカル座標がimageの範囲内にあるかどうかを返す
         }
-
+        
+        /// <summary>
+        ///　色を徐々に変化させる
+        /// </summary>
         IEnumerator ChangeColor(Color targetColor)
         {
             Color startColor = _image.color;　//Colorの初期値を保存
