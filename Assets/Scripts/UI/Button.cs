@@ -27,6 +27,7 @@ public class Button : MonoBehaviour
     {
         gameUI.RulePanel.SetActive(true);
     }
+
     public void OnExitButton()
     {
         gameUI.RulePanel.SetActive(false);
@@ -39,6 +40,7 @@ public class Button : MonoBehaviour
     {
         gameUI.DeckPanel.SetActive(true);
     }
+
     public void OffDeckButton()
     {
         gameUI.DeckPanel.SetActive(false);
@@ -48,17 +50,18 @@ public class Button : MonoBehaviour
     }
 
 
-
     public void SlimeButton()
     {
         master.enemyNum = 0;
         master.Serect();
     }
+
     public void GolemButton()
     {
         master.enemyNum = 1;
         master.Serect();
     }
+
     public void DragonButton()
     {
         master.enemyNum = 2;
@@ -70,6 +73,7 @@ public class Button : MonoBehaviour
     {
         gameUI.Proceed();
     }
+
     public void ReturnButton()
     {
         gameUI.ReturnAA();
