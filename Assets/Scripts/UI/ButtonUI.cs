@@ -3,11 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 namespace UI
 {
-    public class ButtonUI : MonoBehaviour
+    public class ButtonUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         private Image _image;
 
@@ -118,7 +119,6 @@ namespace UI
 
         private void Update()
         {
-            OnMouseCursor();
             OnClicked();
             PressDown();
         }
@@ -250,6 +250,16 @@ namespace UI
 
             _image.color = targetColor;　// 最終的な色の変更
             _colorCoroutine = null;　// 遷移が終わったので中身を空にする
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            OnCursor = true;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            OnCursor = false;
         }
     }
 }
