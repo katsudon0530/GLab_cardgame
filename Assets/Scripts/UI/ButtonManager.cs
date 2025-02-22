@@ -157,7 +157,7 @@ namespace UI
                 var image = _currentButton.GetComponent<Image>();
                 var buttonUi = _currentButton.GetComponent<ButtonUI>();
                 image.color = buttonUi.SelectedColor;
-                buttonUi.OnClick?.Invoke();
+                buttonUi.Onclick?.Invoke();
                 // Enterキーが押されたときにOnClickを発火
             }
         }

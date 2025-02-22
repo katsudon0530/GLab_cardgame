@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -16,14 +16,14 @@ namespace UI
         /// <summary>
         ///　クリックされたときに発火するAction
         /// </summary>
-        private Action _onClick;
-
-        /// <summary>
-        ///　このActionにクリック時に発火させたい処理を追加する
-        /// </summary>
-        public Action OnClick { get => _onClick; set => _onClick = value; }
-
-        [SerializeField] private string text;
+        [Header("クリックされたときに発火するメソッドをここにアサインしてください")] 
+        [SerializeField]
+        private UnityEvent _onClick;
+        
+        public UnityEvent Onclick { get => _onClick; set => _onClick = value; }
+       
+        [SerializeField] 
+        private string _text;
 
         #region ColorSettings
 
@@ -104,7 +104,7 @@ namespace UI
             _selected = false;　// 選択されていない状態
             _image = GetComponent<Image>();
             _image.color = DefaultColor;
-            _onClick += ForDebug;
+            _onClick.AddListener(ForDebug);
             var buttonText = transform.GetComponentInChildren<Text>();
             if (buttonText == null)
             {
