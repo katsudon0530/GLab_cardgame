@@ -15,7 +15,7 @@ public class EffectSettings : MonoBehaviour
     public async UniTask StayEffect(Vector3 effectPos)
     {
         _cts = new CancellationTokenSource();
-        GameObject effect = (GameObject)Resources.Load("Effect");
+        GameObject effect = (GameObject)Resources.Load("Effect/EffectDemo");
         var effectPrefab =  Instantiate(effect, effectPos, Quaternion.identity);
         await UniTask.Delay(TimeSpan.FromSeconds(_lifeTime), cancellationToken:_cts.Token);
         _onDestroy?.Invoke();
@@ -25,7 +25,7 @@ public class EffectSettings : MonoBehaviour
     public async UniTask MoveEffect(Vector3 targetPos, Vector3 startPos)
     {
         _ctsMove = new CancellationTokenSource();
-        GameObject effect = (GameObject)Resources.Load("Effect");
+        GameObject effect = (GameObject)Resources.Load("Effect/EffectDemo");
         var effectPrefab =  Instantiate(effect, startPos, Quaternion.identity);
         await effectPrefab.transform.DOLocalMove(targetPos, _duration).SetEase(_easing).ToUniTask(cancellationToken:_ctsMove.Token);
         _onDestroy?.Invoke();
