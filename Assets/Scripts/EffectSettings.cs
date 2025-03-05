@@ -11,6 +11,7 @@ public class EffectSettings : MonoBehaviour
     [SerializeField] private float _lifeTime;
     private Action _onDestroy;
     private CancellationTokenSource _cts;
+    private CancellationTokenSource _ctsMove;
     public async UniTask StayEffect(Vector3 effectPos)
     {
         _cts = new CancellationTokenSource();
@@ -23,15 +24,16 @@ public class EffectSettings : MonoBehaviour
 
     public async UniTask MoveEffect(Vector3 targetPos, Vector3 startPos)
     {
+        _ctsMove = new CancellationTokenSource();
         GameObject effect = (GameObject)Resources.Load("Effect");
         var effectPrefab =  Instantiate(effect, startPos, Quaternion.identity);
-        await effect.transform.DOLocalMove(targetPos, _duration).SetEase(_easing).ToUniTask(cancellationToken:_cts.Token);
+        await effectPrefab.transform.DOLocalMove(targetPos, _duration).SetEase(_easing).ToUniTask(cancellationToken:_ctsMove.Token);
         _onDestroy?.Invoke();
         Destroy(effectPrefab);
          
     }
 
-    public void CancellEffect()
+    public void HoldEffect()
     {
         _cts?.Cancel();
     }
@@ -39,5 +41,17 @@ public class EffectSettings : MonoBehaviour
     public void Dispose()
     {
         _cts?.Dispose();
+        _ctsMove?.Dispose();
+    }
+
+    public void StopEffect()
+    {
+        _ctsMove?.Cancel();
+    }
+
+
+    private void Start()
+    {
+       MoveEffect(new Vector3(0, 10, 0),Vector3.zero );
     }
 }
