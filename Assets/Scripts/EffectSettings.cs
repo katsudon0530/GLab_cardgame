@@ -19,10 +19,10 @@ public class EffectSettings : MonoBehaviour
     public async UniTask StayEffect(Vector3 effectPos)
     {
         _cts = new CancellationTokenSource();　//初期化
-        GameObject effect = (GameObject)Resources.Load("Effect/EffectDemo");　//Resources.Loadの引数にResources以下のpathを入力
+        var effect = (EffectSettings)Resources.Load("Effect/EffectDemo");　//Resources.Loadの引数にResources以下のpathを入力
         if (effect == null)
         {
-            Debug.Log("指定されたパスが見つかりません");
+            Debug.LogError("指定されたパスが見つかりません");
             return;
         }
         var effectPrefab =  Instantiate(effect, effectPos, Quaternion.identity); 
@@ -45,10 +45,7 @@ public class EffectSettings : MonoBehaviour
         // _durationの時間でtargetPosまでtransformを移動させる(_easingにのっとって)　ToUniTaskでawaitの後に書けるようになる
         _onDestroy?.Invoke();
         Destroy(effectPrefab);
-         
     }
-
-    
     /// <summary>
     ///　固定effectを消したくない時に呼びだす
     /// </summary>
@@ -56,8 +53,6 @@ public class EffectSettings : MonoBehaviour
     {
         _cts?.Cancel();
     }
-
-    
     /// <summary>
     ///　ゲーム終了時に必要に応じて呼び出す
     /// </summary>
@@ -66,8 +61,6 @@ public class EffectSettings : MonoBehaviour
         _cts?.Dispose();
         _ctsMove?.Dispose();
     }
-
-    
     /// <summary>
     ///　動くeffectを止める際に呼び出す
     /// </summary>
@@ -75,5 +68,4 @@ public class EffectSettings : MonoBehaviour
     {
         _ctsMove?.Cancel();
     }
-
 }
